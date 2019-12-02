@@ -851,8 +851,11 @@ command.'''
                     # just do nothing if the file is not writable
                     pass
             # set or open the output file
+            cv = gdb.convenience_variable(arg)
             if arg == '':
                 self.obj.output = None
+            elif cv != None:
+                self.obj.output = str(cv).strip('\"')
             else:
                 self.obj.output = arg
             # redisplay the dashboard in the new output
