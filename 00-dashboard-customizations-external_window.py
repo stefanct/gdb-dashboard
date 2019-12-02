@@ -6,20 +6,20 @@ def start_terminal():
     import psutil
     from time import sleep
 
-    cmd = [
-        "xterm",
-        "-e",
-        "stty -echo ; cat >/dev/null",
-    ]
     #  cmd = [
-        #  "mate-terminal",
-        #  "--hide-menubar",
-        #  "--disable-factory",
-        #  "--",
-        #  "sh",
-        #  "-c",
+        #  "xterm",
+        #  "-e",
         #  "stty -echo ; cat >/dev/null",
     #  ]
+    cmd = [
+        "mate-terminal",
+        "--hide-menubar",
+        "--disable-factory",
+        "--",
+        "sh",
+        "-c",
+        "stty -echo ; cat >/dev/null",
+    ]
 
     #  print("cmd is %s" % ' '.join(cmd))
 

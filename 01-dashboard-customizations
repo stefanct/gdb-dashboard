@@ -1,0 +1,23 @@
+set confirm off
+
+py gdb.execute('dashboard -output %s' % str(gdb.convenience_variable("tty")).strip('\"'))
+
+dashboard -layout breakpoints assembly !expressions !history !memory registers source stack threads variables
+
+dashboard -style divider_fill_style_primary '94' # divider (bar): light blue
+dashboard -style divider_fill_style_secondary '1;30'
+dashboard -style divider_label_style_on_primary '94;1' # divider labels: light blue, bold
+dashboard -style divider_label_style_on_secondary '1;37'
+dashboard -style divider_label_style_off_primary '33' # unused divider labels: orange (unchanged)
+dashboard -style divider_label_style_off_secondary '1;30'
+#dashboard -style style_selected_1 ';7' # current/changed values: bold
+dashboard -style style_selected_1 ';7' # current/changed values: reversed
+dashboard -style style_selected_2 '90;7' # surrounding items: grey, reversed
+dashboard -style style_low '0' # register names etc.: black
+dashboard -style style_high '34' # variable identifiers: blue
+dashboard -style style_error '31' # error messages
+dashboard -style style_critical '97;41' # breakpoints, ellipses: white on red
+
+dashboard -style syntax_highlighting "xcode"
+
+#  dashboard source -style height 0 # dynamic
