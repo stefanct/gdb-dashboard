@@ -1,6 +1,7 @@
 set confirm off
 
-py gdb.execute('dashboard -output %s' % str(gdb.convenience_variable("tty")).strip('\"'))
+py from packaging import version
+py if version.parse(gdb.VERSION) >= version.parse('8.2.1') and gdb.convenience_variable("tty"): gdb.execute('dashboard -output %s' % str(gdb.convenience_variable("tty")).strip('\"'))
 
 dashboard -layout breakpoints assembly !expressions !history !memory registers source stack threads variables
 

@@ -121,7 +121,12 @@ def main():
 
     try:
         import gdb
-        gdb.set_convenience_variable("tty", pts_path)
+        from packaging import version
+        if version.parse(gdb.VERSION) >= version.parse('8.2.1'):
+            gdb.set_convenience_variable("tty", pts_path)
+        else:
+            print("Could not use convenience variable to pass path to PTY")
+            print("Please execute 'dashboard -output %s' manually." % pts_path)
 
     except ImportError:
         try:
